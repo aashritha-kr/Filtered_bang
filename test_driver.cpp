@@ -82,7 +82,7 @@ double calculate_recall(unsigned num_queries, unsigned *gold_std,
 			// cout << v << "\t" ;
 			if (res.find(v) != res.end())
 			{
-				cout<<v<<" correct"<<endl;
+				// cout<<v<<" correct"<<endl;
 				cur_recall++;
 			}
 		}
@@ -302,7 +302,7 @@ void preprocess_query_file(string queryPointsFP_file, int numQueries)
 
 	queriesFP = (T *)malloc(sizeof(T) * numQueries * Dim); // full floating point coordinates of queries
 	queriesFP_transformed = (float *)malloc(sizeof(float) * numQueries * (Dim + 1));
-	if (NULL == queriesFP || NULL == queriesFP_transformed)Notice that this function call is completely separate from any label or filter processing. It simply loads a pre-computed set of correct answers.
+	if (NULL == queriesFP || NULL == queriesFP_transformed)//Notice that this function call is completely separate from any label or filter processing. It simply loads a pre-computed set of correct answers.
 
 
 	{
@@ -400,11 +400,11 @@ int run_anns(int argc, char **argv)
 
 	in8.close();
 
-	std::cout << "DEBUG: First 5 query filters: ";
-	for(int i=0; i<5 && i<numQueries; ++i) {
-		std::cout << query_filters[i] << " ";
-	}
-	std::cout << std::endl;
+	// std::cout << "DEBUG: First 5 query filters: ";
+	// for(int i=0; i<5 && i<numQueries; ++i) {
+	// 	std::cout << query_filters[i] << " ";
+	// }
+	// std::cout << std::endl;
 
 	string datapoints_filter_filename=string(argv[9]);
 
@@ -459,14 +459,14 @@ int run_anns(int argc, char **argv)
 
 	in9i.close();
 
-	std::cout << "DEBUG: First 5 datapoint labels:" << std::endl;
-	for(int i=0; i<5 && i<no_points; ++i) {
-		std::cout << "  Point " << i << ": offset=" << label_offsets[i] << ", count=" << label_counts[i] << ", labels=";
-		for(int j=0; j<label_counts[i]; ++j) {
-			std::cout << datapoints_filter[label_offsets[i] + j] << " ";
-		}
-		std::cout << std::endl;
-	}
+	// std::cout << "DEBUG: First 5 datapoint labels:" << std::endl;
+	// for(int i=0; i<5 && i<no_points; ++i) {
+	// 	std::cout << "  Point " << i << ": offset=" << label_offsets[i] << ", count=" << label_counts[i] << ", labels=";
+	// 	for(int j=0; j<label_counts[i]; ++j) {
+	// 		std::cout << datapoints_filter[label_offsets[i] + j] << " ";
+	// 	}
+	// 	std::cout << std::endl;
+	// }
 
 	unordered_map<uint32_t,unsigned> labels_to_medoid_map;
 
@@ -489,13 +489,13 @@ int run_anns(int argc, char **argv)
 
 	in10.close();
 
-	std::cout << "DEBUG: First 5 labels_to_medoid_map entries:" << std::endl;
-	int debug_count = 0;
-	for(auto const& [key, val] : labels_to_medoid_map) {
-		if(debug_count >= 5) break;
-		std::cout << "  Label " << key << " -> Medoid " << val << std::endl;
-		debug_count++;
-	}
+	// std::cout << "DEBUG: First 5 labels_to_medoid_map entries:" << std::endl;
+	// int debug_count = 0;
+	// for(auto const& [key, val] : labels_to_medoid_map) {
+	// 	if(debug_count >= 5) break;
+	// 	std::cout << "  Label " << key << " -> Medoid " << val << std::endl;
+	// 	debug_count++;
+	// }
 
 	int recall_param = atoi(argv[5]);
 	int nWLLen = recall_param;
